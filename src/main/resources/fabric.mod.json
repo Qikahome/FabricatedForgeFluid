@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "fabricatedforgefluid",
+  "version": "${version}",
+  "name": "FabricatedForgeFluid",
+  "description": "Forge-style fluid system on Fabric: FluidType-driven entity interaction and automatic render registration.",
+  "license": "LGPL-2.1",
+  "authors": [
+    "Qikahome"
+  ],
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "dev.qikahome.fabricatedforgefluid.FabricatedForgeFluid"
+    ],
+    "client": [
+      "dev.qikahome.fabricatedforgefluid.FabricatedForgeFluid"
+    ]
+  },
+  "mixins": [
+    "fabricatedforgefluid.mixins.json"
+  ],
+  "accesswidener": "fabricatedforgefluid.accesswidener",
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "fabric-api": "*",
+    "minecraft": "~1.20.1",
+    "java": ">=17"
+  }
+}

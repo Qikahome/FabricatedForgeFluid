@@ -1,0 +1,139 @@
+// FabricatedForgeFluid → Fabric (1.20.1) 独立流体库
+// Forge 式流体体系在 Fabric 上的复刻：FluidType 驱动实体交互 + 自动渲染注册。
+// 骨架参考 Create (mc1.20.1/fabric/dev) 与 JsonThings-Fabric：loom 1.10.+ 钉版 + Porting Lib 整包 include。
+plugins {
+    id 'fabric-loom' version '1.10.+'
+    id 'maven-publish'
+}
+
+group = project.property('group')
+version = project.property('mod_version')
+
+base {
+    archivesName = 'FabricatedForgeFluid-1.20.1'
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(17)
+    withSourcesJar()
+}
+
+repositories {
+    maven {
+        // hanbings 第三方代理：镜像 fabricmc/mavenCentral 等，缓解国外源过慢（若失效可移除）
+        url project.findProperty('loom_libraries_base') ?: 'https://repository.hanbings.io/proxy/'
+    }
+    maven {
+        url 'https://maven.aliyun.com/repository/public'
+        content {
+            includeGroupByRegex '.*'
+        }
+    }
+    mavenCentral()
+    maven {
+        // Minecraft 运行库（text2speech 等 Mojang 专属，仅发布于官方库）
+        url "https://libraries.minecraft.net/"
+    }
+    maven {
+        url "https://maven.fabricmc.net/"
+    }
+    maven {
+        // Porting Lib 发布仓库
+        url "https://mvn.devos.one/releases"
+        content {
+            includeGroup "io.github.fabricators_of_create.Porting-Lib"
+        }
+    }
+    maven {
+        // Porting Lib 模块的传递依赖（attributes → reach-entity-attributes）
+        url "https://maven.jamieswhiteshirt.com/libs-release"
+        content {
+            includeGroup "com.jamieswhiteshirt"
+        }
+    }
+    // parchment 数据（与 Forge 侧一致的 1.20.1-2023.09.03）
+    maven {
+        url "https://maven.parchmentmc.org"
+        content {
+            includeGroupByRegex 'org\\.parchmentmc.*'
+        }
+    }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.property('minecraft_version')}"
+    // 与 Forge 侧同为 mojmap + parchment 命名
+    mappings loom.layered {
+        officialMojangMappings()
+        parchment "org.parchmentmc.data:parchment-${project.property('parchment_minecraft_version')}:${project.property('parchment_mappings_version')}@zip"
+    }
+    modImplementation "net.fabricmc:fabric-loader:${project.property('fabric_loader_version')}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.property('fabric_api_version')}"
+
+    // Porting Lib 整包（jar-in-jar include，Create mc1.20.1/fabric/dev 同款做法）
+    def portingLibVersion = project.property('porting_lib_version')
+    def portingLibModules = [
+            'accessors', 'asm', 'attributes', 'base', 'blocks', 'brewing', 'chunk_loading',
+            'client_events', 'common', 'config', 'core', 'data', 'entity', 'extensions',
+            'fluids', 'gametest', 'gui_utils', 'items', 'lazy_registration', 'level_events',
+            'loot', 'mixin_extensions', 'model_builders', 'model_generators', 'model_loader',
+            'model_materials', 'models', 'networking', 'obj_loader', 'recipe_book_categories',
+            'registries', 'tags', 'tool_actions', 'transfer', 'utility'
+    ]
+    portingLibModules.each { mod ->
+        modImplementation(include("io.github.fabricators_of_create.Porting-Lib:${mod}:${portingLibVersion}"))
+    }
+
+    compileOnly 'org.jetbrains:annotations:24.0.1'
+
+    // MixinExtras：@ModifyExpressionValue 等扩展注入（loom 不自动提供编译依赖）。
+    // 运行时由 Porting Lib 自带的 mixinextras（0.5.0）提供，故仅需编译期注解类，避免版本冲突。
+    compileOnly "io.github.llamalad7:mixinextras-common:0.5.0"
+}
+
+loom {
+    accessWidenerPath = file("src/main/resources/fabricatedforgefluid.accesswidener")
+
+    runs {
+        configureEach {
+            runDir = 'run'
+        }
+        client {
+            client()
+        }
+        server {
+            server()
+        }
+    }
+}
+
+processResources {
+    inputs.property "version", project.version
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+publishing {
+    publications {
+        mavenFabric(MavenPublication) {
+            artifactId = 'FabricatedForgeFluid-1.20.1'
+            from components.java
+        }
+    }
+    // TODO(发布)：目标仓库未定（Qikahome GitHub Packages 或独立），先注释
+    // repositories {
+    //     maven {
+    //         name = "GitHubPackages"
+    //         url = "https://maven.pkg.github.com/Qikahome/FabricatedForgeFluid"
+    //         credentials {
+    //             username = System.getenv("GITHUB_ACTOR")
+    //             password = System.getenv("GITHUB_TOKEN")
+    //         }
+    //     }
+    // }
+}

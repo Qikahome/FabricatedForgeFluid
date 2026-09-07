@@ -1,0 +1,3 @@
+accessWidener v2 named
+# Allow LivingEntityFluidMixin (@Shadow on Entity) and cross-class access to Entity.fluidOnEyes
+accessible field net/minecraft/world/entity/Entity fluidOnEyes Ljava/util/Set;

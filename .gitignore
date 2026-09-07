@@ -1,0 +1,18 @@
+# Gradle / Fabric Loom
+.gradle/
+build/
+out/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+bin/
+
+# 运行目录与日志（勿提交）
+run/
+*.log
+
+# 系统
+.DS_Store
+Thumbs.db
