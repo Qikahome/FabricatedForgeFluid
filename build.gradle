@@ -93,6 +93,8 @@ dependencies {
 
 loom {
     accessWidenerPath = file("src/main/resources/fabricatedforgefluid.accesswidener")
+    // 注：refmap 名由 loom 按 archivesName 生成（FabricatedForgeFluid-1.20.1-refmap.json）。
+    // mixins.json 的 "refmap" 字段必须与之匹配（已改好），否则发布环境（intermediary）读不到而崩溃。
 
     runs {
         configureEach {
