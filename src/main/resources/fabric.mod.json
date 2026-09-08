@@ -20,7 +20,7 @@
   "mixins": [
     "fabricatedforgefluid.mixins.json"
   ],
-  "accesswidener": "fabricatedforgefluid.accesswidener",
+  "accessWidener": "fabricatedforgefluid.accesswidener",
   "depends": {
     "fabricloader": ">=0.16.0",
     "fabric-api": "*",

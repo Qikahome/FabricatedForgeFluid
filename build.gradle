@@ -93,8 +93,11 @@ dependencies {
 
 loom {
     accessWidenerPath = file("src/main/resources/fabricatedforgefluid.accesswidener")
-    // 注：refmap 名由 loom 按 archivesName 生成（FabricatedForgeFluid-1.20.1-refmap.json）。
-    // mixins.json 的 "refmap" 字段必须与之匹配（已改好），否则发布环境（intermediary）读不到而崩溃。
+    mixin {
+        // 固定 refmap 名，不随 archivesName 变化；需与 fabricatedforgefluid.mixins.json 的 "refmap" 一致，
+        // 否则发布环境（intermediary）按此名找不到映射文件而崩溃。
+        defaultRefmapName = "fabricatedforgefluid.refmap.json"
+    }
 
     runs {
         configureEach {
