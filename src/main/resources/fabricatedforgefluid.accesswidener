@@ -1,3 +1,5 @@
 accessWidener v2 named
 # Allow LivingEntityFluidMixin (@Shadow on Entity) and cross-class access to Entity.fluidOnEyes
 accessible field net/minecraft/world/entity/Entity fluidOnEyes Ljava/util/Set;
+# MixinModelManager 注入 ModelManager#loadModels 的参数/返回类型（private 嵌套类）
+accessible class net/minecraft/client/resources/model/ModelManager$ReloadState
