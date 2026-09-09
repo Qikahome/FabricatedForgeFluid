@@ -1,8 +1,5 @@
-package dev.qikahome.fabricatedforgefluid.test;
+package qikahome.fabricatedforgefluid.test;
 
-import dev.qikahome.fabricatedforgefluid.client.FabricatedFluidRenderHandler;
-import dev.qikahome.fabricatedforgefluid.fluids.FabricatedFlowingFluid;
-import dev.qikahome.fabricatedforgefluid.fluids.FabricatedFluidType;
 import io.github.fabricators_of_create.porting_lib.fluids.FluidType;
 import io.github.fabricators_of_create.porting_lib.fluids.PortingLibFluids;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
@@ -17,6 +14,9 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Fluid;
+import qikahome.fabricatedforgefluid.client.FabricatedFluidRenderHandler;
+import qikahome.fabricatedforgefluid.fluids.FabricatedFlowingFluid;
+import qikahome.fabricatedforgefluid.fluids.FabricatedFluidType;
 
 import java.util.function.Consumer;
 
@@ -35,8 +35,8 @@ public final class TestFluids {
 
     public static void register() {
         // 0. 坐标与标签：tag 供 tagToTypeMap 反查（需让该流体真实挂上此 tag）
-        ResourceLocation stillId = new ResourceLocation("fff", "test");
-        ResourceLocation flowingId = new ResourceLocation("fff", "flowing_test");
+        ResourceLocation stillId = ResourceLocation.fromNamespaceAndPath("fff", "test");
+        ResourceLocation flowingId = ResourceLocation.fromNamespaceAndPath("fff", "flowing_test");
         TagKey<Fluid> testTag = TagKey.create(Registries.FLUID, stillId);
 
         // 1. FluidType：匿名子类，物理可游泳/可推动，挂熔岩贴图 + 紫色染色（blend 呈青色）
@@ -47,8 +47,8 @@ public final class TestFluids {
             @Override
             public void initializeClient(Consumer<FluidRenderHandler> consumer) {
                 consumer.accept(new FabricatedFluidRenderHandler(
-                        new ResourceLocation("minecraft", "block/lava_still"),
-                        new ResourceLocation("minecraft", "block/lava_flow"),
+                        ResourceLocation.fromNamespaceAndPath("minecraft", "block/lava_still"),
+                        ResourceLocation.fromNamespaceAndPath("minecraft", "block/lava_flow"),
                         null,
                         0xFF00FFFF)); // 青：蓝+绿
             }
@@ -76,7 +76,7 @@ public final class TestFluids {
         FabricatedFlowingFluid still = Registry.register(BuiltInRegistries.FLUID, stillId, fluidHolder[1]);
 
         // 3. LiquidBlock + 随机 tick（流动必需）。先建后挂进 blockHolder 供 createLegacyBlock 懒解析。
-        LiquidBlock block = new LiquidBlock(still, BlockBehaviour.Properties.copy(Blocks.WATER));
+        LiquidBlock block = new LiquidBlock(still, BlockBehaviour.Properties.ofFullCopy(Blocks.WATER));
         blockHolder[0] = block;
         Registry.register(BuiltInRegistries.BLOCK, stillId, block);
 

@@ -1,4 +1,4 @@
-package dev.qikahome.fabricatedforgefluid.fluids;
+package qikahome.fabricatedforgefluid.fluids;
 
 import io.github.fabricators_of_create.porting_lib.fluids.BaseFlowingFluid;
 import net.minecraft.world.item.Item;
@@ -15,7 +15,7 @@ import java.util.function.Supplier;
  * <p>
  * 复用 Porting Lib {@link BaseFlowingFluid} 的核心实现（slopeFindDistance/levelDecrease/explosionResistance/
  * tickRate 等），仅将 FluidType 约束为 {@link FabricatedFluidType}，使客户端自动渲染注册（
- * {@link dev.qikahome.fabricatedforgefluid.client.FluidRenderHandlerRegistrar}）能识别并调用
+ * {@link qikahome.fabricatedforgefluid.client.FluidRenderHandlerRegistrar}）能识别并调用
  * {@link FabricatedFluidType#initializeClient}。
  */
 public abstract class FabricatedFlowingFluid extends BaseFlowingFluid {

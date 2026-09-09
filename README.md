@@ -83,9 +83,9 @@ dependencies {
 
 1. Extend `FabricatedFluidType`，pass the matching `TagKey<Fluid>` to the constructor
    （also register into `PortingLibFluids.FLUID_TYPES`），and make the fluid actually carry that tag
-   （`data/<ns>/tags/fluids/*.json`）.
+   （`data/<ns>/tags/fluid/*.json`）.
    继承 `FabricatedFluidType`，构造时传入对应的 `TagKey<Fluid>`（同时注册进
-   `PortingLibFluids.FLUID_TYPES`），并让流体真实挂上该 tag（`data/<ns>/tags/fluids/*.json`）。
+   `PortingLibFluids.FLUID_TYPES`），并让流体真实挂上该 tag（`data/<ns>/tags/fluid/*.json`）。
 2. Create still/flowing fluids, `LiquidBlock` and a bucket via `FabricatedFlowingFluid.Properties`.
    用 `FabricatedFlowingFluid.Properties` 创建 still/flowing 流体、`LiquidBlock` 与桶。
 3. On the client, provide textures/colour via `initializeClient(Consumer<FluidRenderHandler>)`；
@@ -98,8 +98,8 @@ dependencies {
    它会在 atlas 就绪（模型烘焙前）时预填充纹理 sprite，使依赖烘焙期纹理的模型
    （如流体桶 loader）不会拿到 null。
 
-Example：`dev.qikahome.fabricatedforgefluid.test.TestFluids`（registered only in dev environment）。
-示例见 `dev.qikahome.fabricatedforgefluid.test.TestFluids`（开发环境条件注册）。
+Example：`qikahome.fabricatedforgefluid.test.TestFluids`（registered only in dev environment）。
+示例见 `qikahome.fabricatedforgefluid.test.TestFluids`（开发环境条件注册）。
 
 ## Branches / 分支
 

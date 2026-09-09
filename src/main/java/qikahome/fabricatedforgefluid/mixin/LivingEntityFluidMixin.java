@@ -1,16 +1,19 @@
-package dev.qikahome.fabricatedforgefluid.mixin;
+package qikahome.fabricatedforgefluid.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
-import dev.qikahome.fabricatedforgefluid.fluids.FabricatedFluidType;
-import io.github.fabricators_of_create.porting_lib.attributes.PortingLibAttributes;
+
 import io.github.fabricators_of_create.porting_lib.fluids.FluidType;
+import net.minecraft.core.Holder;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.Vec3;
+import qikahome.fabricatedforgefluid.fluids.FabricatedFluidType;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -29,7 +32,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  * <li>travel 游泳条件与游泳速度（SWIM_SPEED）在此注入。</li>
  * <li>呼吸判定（baseTick）扩展为 canDrown 的流体。</li>
  * </ul>
- * 注：重力（ENTITY_GRAVITY）与慢落由 Porting Lib attributes 模块处理。
+ * 注：重力 1.21.1 起为原版属性 {@code Attributes.GRAVITY}（1.20.1 用 Porting Lib attributes 的 ENTITY_GRAVITY）。
  */
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityFluidMixin extends EntityFluidMixin {
@@ -41,7 +44,7 @@ public abstract class LivingEntityFluidMixin extends EntityFluidMixin {
     public abstract boolean canStandOnFluid(FluidState fluidState);
 
     @Shadow
-    public abstract AttributeInstance getAttribute(Attribute attribute);
+    public abstract AttributeInstance getAttribute(Holder<Attribute> attribute);
 
     @Unique
     private LivingEntity self() {
@@ -93,7 +96,8 @@ public abstract class LivingEntityFluidMixin extends EntityFluidMixin {
         if (!this.isAffectedByFluids() || this.canStandOnFluid(state))
             return original;
         FluidType type = state.getFluidType();
-        AttributeInstance gravity = this.getAttribute(PortingLibAttributes.ENTITY_GRAVITY);
+        // 1.21.1 起实体重力为原版属性 Attributes.GRAVITY（取代 1.20.1 的 Porting Lib ENTITY_GRAVITY）
+        AttributeInstance gravity = this.getAttribute(Attributes.GRAVITY);
         double g = gravity != null ? gravity.getValue() : 0.08D;
         return !type.move(state, self(), travelVector, g);
     }

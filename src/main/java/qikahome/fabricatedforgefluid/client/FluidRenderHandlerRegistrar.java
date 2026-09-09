@@ -1,11 +1,11 @@
-package dev.qikahome.fabricatedforgefluid.client;
+package qikahome.fabricatedforgefluid.client;
 
-import dev.qikahome.fabricatedforgefluid.FabricatedForgeFluid;
-import dev.qikahome.fabricatedforgefluid.fluids.FabricatedFluidType;
 import io.github.fabricators_of_create.porting_lib.fluids.FluidType;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.material.Fluid;
+import qikahome.fabricatedforgefluid.FabricatedForgeFluid;
+import qikahome.fabricatedforgefluid.fluids.FabricatedFluidType;
 
 /**
  * 客户端自动渲染注册（对应 Forge 的 FluidType 客户端扩展自动发现）：

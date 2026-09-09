@@ -1,12 +1,13 @@
-package dev.qikahome.fabricatedforgefluid.client;
+package qikahome.fabricatedforgefluid.client;
 
-import dev.qikahome.fabricatedforgefluid.FabricatedForgeFluid;
-import dev.qikahome.fabricatedforgefluid.event.AtlasLoadHooks;
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.resources.model.AtlasSet;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.InventoryMenu;
+import qikahome.fabricatedforgefluid.FabricatedForgeFluid;
+import qikahome.fabricatedforgefluid.event.AtlasLoadHooks;
+
 import org.jetbrains.annotations.Nullable;
 
 /**

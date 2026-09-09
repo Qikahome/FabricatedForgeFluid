@@ -11,10 +11,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "dev.qikahome.fabricatedforgefluid.FabricatedForgeFluid"
+      "qikahome.fabricatedforgefluid.FabricatedForgeFluid"
     ],
     "client": [
-      "dev.qikahome.fabricatedforgefluid.FabricatedForgeFluid"
+      "qikahome.fabricatedforgefluid.FabricatedForgeFluid"
     ]
   },
   "mixins": [
@@ -24,7 +24,7 @@
   "depends": {
     "fabricloader": ">=0.16.0",
     "fabric-api": "*",
-    "minecraft": "~1.20.1",
-    "java": ">=17"
+    "minecraft": "~1.21.1",
+    "java": ">=21"
   }
 }

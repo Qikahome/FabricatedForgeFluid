@@ -1,17 +1,18 @@
-package dev.qikahome.fabricatedforgefluid;
+package qikahome.fabricatedforgefluid;
 
-import dev.qikahome.fabricatedforgefluid.client.FluidRenderHandlerRegistrar;
-import dev.qikahome.fabricatedforgefluid.test.TestFluids;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
+import qikahome.fabricatedforgefluid.client.FluidRenderHandlerRegistrar;
+import qikahome.fabricatedforgefluid.test.TestFluids;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
  * FabricatedForgeFluid：在 Fabric 上复刻 Forge 的流体体系（FluidType 驱动）。
  * <ul>
- *   <li>渲染：客户端自动遍历流体注册表，为 {@link dev.qikahome.fabricatedforgefluid.fluids.FabricatedFluidType}
+ *   <li>渲染：客户端自动遍历流体注册表，为 {@link qikahome.fabricatedforgefluid.fluids.FabricatedFluidType}
  *       注册世界流体渲染（对应 Forge 的 FluidType#initializeClient + 自动发现）。</li>
  *   <li>实体交互：FluidType 属性驱动的推动/游泳/溺水等物理行为（对应 Forge 的 Entity/LivingEntity 补丁）。</li>
  * </ul>
