@@ -77,12 +77,11 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.property('fabric_loader_version')}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.property('fabric_api_version')}"
 
-    // Porting Lib 仅 include 实际使用的最小模块集（jar-in-jar include）。
-    // FFF 自身直接使用 fluids；作为 JsonThings 的 PL 运行时载体（JsonThings 不打包 PL），
-    // 还需覆盖其实际 import 的 common/registry/item_abilities。余者由模块间传递依赖带入。
+    // Porting Lib 仅 include FFF 自身直接使用的最小模块集（jar-in-jar include）。
+    // JsonThings 所需模块由 JsonThings 自己单独引用，不在本库内嵌。
     def portingLibVersion = project.property('porting_lib_version')
     def portingLibModules = [
-            'common', 'fluids', 'item_abilities', 'registry'
+            'fluids'
     ]
     portingLibModules.each { mod ->
         modImplementation(include("io.github.fabricators_of_create.Porting-Lib:${mod}:${portingLibVersion}"))
