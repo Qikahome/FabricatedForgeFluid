@@ -1,4 +1,4 @@
-package dev.qikahome.fabricatedforgefluid.fluids;
+package qikahome.fabricatedforgefluid.fluids;
 
 import net.minecraft.world.phys.Vec3;
 

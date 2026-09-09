@@ -1,12 +1,13 @@
-package dev.qikahome.fabricatedforgefluid.mixin;
+package qikahome.fabricatedforgefluid.mixin;
 
-import dev.qikahome.fabricatedforgefluid.event.AtlasLoadHooks;
 import net.minecraft.client.resources.model.AtlasSet;
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelManager;
 import net.minecraft.client.resources.model.ModelManager.ReloadState;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.profiling.ProfilerFiller;
+import qikahome.fabricatedforgefluid.event.AtlasLoadHooks;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

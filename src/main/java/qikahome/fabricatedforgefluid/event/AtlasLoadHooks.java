@@ -1,4 +1,4 @@
-package dev.qikahome.fabricatedforgefluid.event;
+package qikahome.fabricatedforgefluid.event;
 
 import net.minecraft.client.resources.model.AtlasSet;
 import net.minecraft.resources.ResourceLocation;

@@ -1,4 +1,4 @@
-package dev.qikahome.fabricatedforgefluid.fluids;
+package qikahome.fabricatedforgefluid.fluids;
 
 import io.github.fabricators_of_create.porting_lib.fluids.FluidType;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
@@ -15,9 +15,9 @@ import java.util.function.Consumer;
  * Fabric 对应物。
  * <p>
  * 视觉数据（贴图/颜色）由子类在 {@link #initializeClient(Consumer)} 中通过
- * {@link dev.qikahome.fabricatedforgefluid.client.FabricatedFluidRenderHandler}
+ * {@link qikahome.fabricatedforgefluid.client.FabricatedFluidRenderHandler}
  * 交给客户端；
- * {@link dev.qikahome.fabricatedforgefluid.client.FluidRenderHandlerRegistrar}
+ * {@link qikahome.fabricatedforgefluid.client.FluidRenderHandlerRegistrar}
  * 会在客户端启动时
  * 自动遍历流体注册表，对所有本类型实例调用该方法并注册世界流体渲染（对应 Forge 的自动发现）。
  */

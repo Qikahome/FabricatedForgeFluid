@@ -11,10 +11,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "dev.qikahome.fabricatedforgefluid.FabricatedForgeFluid"
+      "qikahome.fabricatedforgefluid.FabricatedForgeFluid"
     ],
     "client": [
-      "dev.qikahome.fabricatedforgefluid.FabricatedForgeFluid"
+      "qikahome.fabricatedforgefluid.FabricatedForgeFluid"
     ]
   },
   "mixins": [

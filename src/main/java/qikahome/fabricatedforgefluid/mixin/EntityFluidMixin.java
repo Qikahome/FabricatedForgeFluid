@@ -1,7 +1,7 @@
-package dev.qikahome.fabricatedforgefluid.mixin;
+package qikahome.fabricatedforgefluid.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
-import dev.qikahome.fabricatedforgefluid.fluids.FabricatedFluidType;
+
 import io.github.fabricators_of_create.porting_lib.fluids.FluidType;
 import it.unimi.dsi.fastutil.objects.Object2DoubleMap;
 import net.minecraft.core.BlockPos;
@@ -13,6 +13,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.AABB;
+import qikahome.fabricatedforgefluid.fluids.FabricatedFluidType;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -74,7 +76,8 @@ public abstract class EntityFluidMixin {
 
     @Unique
     public boolean canSwimInFluidType(FluidType type) {
-        return type != null && type.canSwim(self());
+        // 只对 FabricatedFluidType 生效，避免误影响其他 mod 用 Porting Lib 注册的 FluidType
+        return type instanceof FabricatedFluidType && type.canSwim(self());
     }
 
     /*

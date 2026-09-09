@@ -1,7 +1,7 @@
-package dev.qikahome.fabricatedforgefluid.mixin;
+package qikahome.fabricatedforgefluid.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
-import dev.qikahome.fabricatedforgefluid.fluids.FabricatedFluidType;
+
 import io.github.fabricators_of_create.porting_lib.attributes.PortingLibAttributes;
 import io.github.fabricators_of_create.porting_lib.fluids.FluidType;
 import net.minecraft.tags.TagKey;
@@ -11,6 +11,8 @@ import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.Vec3;
+import qikahome.fabricatedforgefluid.fluids.FabricatedFluidType;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;

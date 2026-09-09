@@ -1,4 +1,4 @@
-package dev.qikahome.fabricatedforgefluid.mixin;
+package qikahome.fabricatedforgefluid.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import io.github.fabricators_of_create.porting_lib.fluids.FluidType;

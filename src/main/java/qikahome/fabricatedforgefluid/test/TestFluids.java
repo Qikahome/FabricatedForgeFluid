@@ -1,8 +1,5 @@
-package dev.qikahome.fabricatedforgefluid.test;
+package qikahome.fabricatedforgefluid.test;
 
-import dev.qikahome.fabricatedforgefluid.client.FabricatedFluidRenderHandler;
-import dev.qikahome.fabricatedforgefluid.fluids.FabricatedFlowingFluid;
-import dev.qikahome.fabricatedforgefluid.fluids.FabricatedFluidType;
 import io.github.fabricators_of_create.porting_lib.fluids.FluidType;
 import io.github.fabricators_of_create.porting_lib.fluids.PortingLibFluids;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
@@ -17,6 +14,9 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Fluid;
+import qikahome.fabricatedforgefluid.client.FabricatedFluidRenderHandler;
+import qikahome.fabricatedforgefluid.fluids.FabricatedFlowingFluid;
+import qikahome.fabricatedforgefluid.fluids.FabricatedFluidType;
 
 import java.util.function.Consumer;
 

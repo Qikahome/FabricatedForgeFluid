@@ -98,8 +98,8 @@ dependencies {
    它会在 atlas 就绪（模型烘焙前）时预填充纹理 sprite，使依赖烘焙期纹理的模型
    （如流体桶 loader）不会拿到 null。
 
-Example：`dev.qikahome.fabricatedforgefluid.test.TestFluids`（registered only in dev environment）。
-示例见 `dev.qikahome.fabricatedforgefluid.test.TestFluids`（开发环境条件注册）。
+Example：`qikahome.fabricatedforgefluid.test.TestFluids`（registered only in dev environment）。
+示例见 `qikahome.fabricatedforgefluid.test.TestFluids`（开发环境条件注册）。
 
 ## Branches / 分支
 
