@@ -70,15 +70,14 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.property('fabric_loader_version')}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.property('fabric_api_version')}"
 
-    // Porting Lib 整包（jar-in-jar include，Create mc1.20.1/fabric/dev 同款做法）
+    // Porting Lib 仅 include 实际使用的最小模块集（jar-in-jar include）。
+    // FFF 自身直接使用 fluids/attributes（PortingLibAttributes）；作为 JsonThings-1.20.1 的
+    // PL 运行时载体（JsonThings 不打包 PL），还需覆盖其实际 import 的
+    // common(Lazy)/tool_actions(ToolAction)/transfer(FluidBucketWrapper)/base(TierSortingRegistry)。
+    // 余者由模块间传递依赖带入。
     def portingLibVersion = project.property('porting_lib_version')
     def portingLibModules = [
-            'accessors', 'asm', 'attributes', 'base', 'blocks', 'brewing', 'chunk_loading',
-            'client_events', 'common', 'config', 'core', 'data', 'entity', 'extensions',
-            'fluids', 'gametest', 'gui_utils', 'items', 'lazy_registration', 'level_events',
-            'loot', 'mixin_extensions', 'model_builders', 'model_generators', 'model_loader',
-            'model_materials', 'models', 'networking', 'obj_loader', 'recipe_book_categories',
-            'registries', 'tags', 'tool_actions', 'transfer', 'utility'
+            'attributes', 'base', 'common', 'fluids', 'tool_actions', 'transfer'
     ]
     portingLibModules.each { mod ->
         modImplementation(include("io.github.fabricators_of_create.Porting-Lib:${mod}:${portingLibVersion}"))
